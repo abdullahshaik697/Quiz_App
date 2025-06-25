@@ -15,7 +15,7 @@ const Navbar = ({ userData }) => {
 
       const result = await response.json()
     if(result.message==="success"){
-       navigate('login')
+       navigate('/login')
     }
   }
 
