@@ -3,7 +3,6 @@ const key = 'abdullahshaikh03126600460'
 const authMiddleware = (req, res, next)=>{
 
     try {
-        
         const token = req.cookies.token
         if(!token){
             return res.status(401).json({message: "token is empty"})

@@ -34,7 +34,7 @@ const postLogin = async (req, res) => {
         }
         let token = ""
         if(password === user.password){
-            token = jwt.sign({ id: user._id, email: user.email }, 
+            token = jwt.sign({user: user}, 
             key)
         }
 
