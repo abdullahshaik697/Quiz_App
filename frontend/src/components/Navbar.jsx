@@ -4,11 +4,19 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = ({ userData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-   const logout = async () => {
+   
+  const logout = async () => {
     
-    document.cookie =  "token; expires = Thu, 01 Jan 197000:00:00 UTC"
-      navigate('/login')
-    
+    const url = "http://localhost:3000/logout";
+    const response = await fetch(url, {
+      method: "GET",
+      credentials: "include"
+    }) 
+
+      const result = await response.json()
+    if(result.message==="success"){
+       navigate('login')
+    }
   }
 
 
@@ -47,8 +55,9 @@ const Navbar = ({ userData }) => {
       {isOpen && (
         <div className="md:hidden mt-4 space-y-4">
           <Link to="/home" className="block text-center hover:text-yellow-300" onClick={() => setIsOpen(false)}>Home</Link>
+          <h2 className="text-center">{userData?.user?.user?.username}</h2>          
           <button
-            onClick={() => { setIsOpen(false); }}
+            onClick={logout}
             className="block w-full bg-white text-[#C83F12] px-4 py-2 rounded-lg hover:bg-yellow-300">
             Logout
           </button>

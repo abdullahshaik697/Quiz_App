@@ -14,7 +14,7 @@ const Login = () => {
     const handleLogin = async (e) =>{
       e.preventDefault();
       try {
-        const url = "http://localhost:3000/login"    
+        const url = "http://localhost:3000/login"
         const loginFormUserData = await fetch(url,{
             method: "POST",
             headers:{

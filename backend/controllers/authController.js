@@ -25,7 +25,7 @@ const postLogin = async (req, res) => {
         const { email, password } = req.body;
         console.log("Request Body: ", req.body);
         
-        const user = await User.findOne({ email })
+        const user = await User.findOne({ email }) 
         if (!user) {
             return res.status(404).send("User Not Found")
         }
@@ -48,8 +48,23 @@ const postLogin = async (req, res) => {
     }
 }
 
+const logout = (req, res) =>{
+
+    try {
+        res.clearCookie("token", { path: '/' })
+        res.status(200).json({message: "success"})
+        
+        
+    } catch (error) {
+        console.log("Logout Error: ",error);
+        
+    }
+
+}
+
 module.exports = {
     postSignup,
     postLogin,
+    logout
 
 }
